@@ -6,7 +6,7 @@ to fill this gap.
 See the [demo](https://github.com/jeromeetienne/console4Worker/blob/master/examples/index.html)
 in the examples/ directory.
 
-# worker side
+# On the Worker Side
 
 First you include the script with
 
@@ -16,7 +16,7 @@ Then you use console.* as you would normally do. Lets say something like
 
     console.log("console call made from inside a webworker");
 
-# page side
+# On the Page Side
 
 To include the script, simply do
 
