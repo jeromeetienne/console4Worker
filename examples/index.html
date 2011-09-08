@@ -1,0 +1,18 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<body>
+		<!-- get consoleForWorker -->
+		<script src="../consoleWorkerPage.js"></script>
+
+		<script language="javascript">
+			// init the worker
+			var worker	= new Worker("worker.js");
+			// attach consoleForWork to this  
+			consoleWorker.bind(worker);
+			// example of message not from consoleWorker
+			worker.addEventListener('message', function(event){
+				console.log("event non consoleWorker", event);				
+			}, false);
+		</script>
+	</body>
+</html>
