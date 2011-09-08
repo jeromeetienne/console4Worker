@@ -1,21 +1,25 @@
 // consoleWorker, the worker side
 
+
 (function(){
-	this.console		= {};
-	var names	= ["log", "debug", "info", "warn", "error", "assert", "dir", "dirxml"
+	this.console	= {};
+	// for each console.* methods, bind it to the given .postMessage()
+	var methods	= ["log", "debug", "info", "warn", "error", "assert", "dir", "dirxml"
 			, "group", "groupEnd", "time", "timeEnd", "count", "trace", "profile", "profileEnd"];
-	for(var i = 0; i < names.length; ++i){
-		(function(name){
-			console[name]	= function(){
-				//if( name === "log" )	return;
-				self.postMessage({
-					type	: "_consoleWorker",
-					data	: {
-						type	: name,
-						data	: Array.prototype.slice.call(arguments)
-					}
-				});
-			};
-		})(names[i]);		
+	// loop over all the methods
+	for(var i = 0; i < methods.length; ++i){
+		// bind this particular method methods
+		console[methods[i]]	= function(){
+			self.postMessage({
+				// to mark this message as coming from consoleWorker
+				type	: "_consoleWorker",
+				data	: {
+					// pass this method
+					type	: methods[i],
+					// pass all the arguments too
+					data	: Array.prototype.slice.call(arguments)
+				}
+			});
+		};
 	}
 }.bind(this))();

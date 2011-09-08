@@ -16,8 +16,9 @@ consoleWorker.filterEvent	= function(event){
 	var type	= event.data.type;
 	var data	= event.data.data;
 	if( type !== '_consoleWorker' )	return false;
-
+	// ok now the event is for consoleWorker
 	console[data.type].apply(console, data.data);
+	// return true to notify the event has been filtered
 	return true;
 }
 
@@ -27,14 +28,8 @@ consoleWorker.filterEvent	= function(event){
 */
 consoleWorker._callback	= function(event){
 	console.log("consoleWorker.bind():", event.data, event)
-	if( consoleWorker._filterEvent(event) ){
-		// failed attempts to get message parsing less intrusive
-		console.log("stopped event2");
-		//event.preventDefault();
-		event.stopPropagation();
-		return false;
-	}
-	//return undefined;
+	// 
+	if( consoleWorker.filterEvent(event) )	return;
 }
 
 /**
