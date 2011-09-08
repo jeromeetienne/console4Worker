@@ -1,9 +1,10 @@
 console4Worker is console.* API for WebWorkers.
 
 WebWorkers are hard to debug. On top of that, console.* API is unavailable
-in WebWorkers. It doesn't help. console4Worker tries to fill this gap.
-See the [live demo]. You can find it in the examples/ directory.
-
+in WebWorkers. It doesn't help. console4Worker is a simple library which try
+to fill this gap.
+See the [demo](https://github.com/jeromeetienne/console4Worker/blob/master/examples/index.html)
+in the examples/ directory.
 
 # how does it work ?
 
@@ -37,5 +38,7 @@ First you include the script with
 
     importScripts('console4Worker-worker.js');
 
-Then you use console.* as you would normally do
+Then you use console.* as you would normally do. Lets say something like
+
+    console.log("console call made from inside a webworker");
 
