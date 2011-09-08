@@ -2,16 +2,18 @@
 <html>
 	<body>
 		<!-- get consoleForWorker -->
-		<script src="../consoleWorkerPage.js"></script>
+		<script src="../console4Worker-page.js"></script>
 
 		<script language="javascript">
 			// init the worker
 			var worker	= new Worker("worker.js");
-			// attach consoleForWork to this  
-			consoleWorker.bind(worker);
-			// example of message not from consoleWorker
+			// example of message not from console4Worker
 			worker.addEventListener('message', function(event){
-				console.log("event non consoleWorker", event);				
+
+				// filter this event if it is from console4Worker
+				if( console4Worker.filterEvent(event) )	return;
+
+				console.log("event non console4Worker", event.data);
 			}, false);
 		</script>
 	</body>

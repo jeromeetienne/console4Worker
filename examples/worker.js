@@ -1,4 +1,4 @@
-importScripts('../consoleWorkerWorker.js');
+importScripts('../console4Worker-worker.js');
 
 console.log("Server says hi")
 
