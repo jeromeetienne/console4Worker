@@ -6,10 +6,15 @@ to fill this gap.
 See the [demo](https://github.com/jeromeetienne/console4Worker/blob/master/examples/index.html)
 in the examples/ directory.
 
-# how does it work ?
+# worker side
 
-a console.* object is declared in the worker. It intercepts all console.* calls and
-pass them to the page thread. a direct approach.
+First you include the script with
+
+    importScripts('console4Worker-worker.js');
+
+Then you use console.* as you would normally do. Lets say something like
+
+    console.log("console call made from inside a webworker");
 
 # page side
 
@@ -32,13 +37,8 @@ So you should have something like
 
     }, false);
 
-# worker side
+# how does it work ?
 
-First you include the script with
-
-    importScripts('console4Worker-worker.js');
-
-Then you use console.* as you would normally do. Lets say something like
-
-    console.log("console call made from inside a webworker");
+a console.* object is declared in the worker. It intercepts all console.* calls and
+pass them to the page thread. a direct approach.
 
