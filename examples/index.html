@@ -7,7 +7,10 @@
 		<script language="javascript">
 			// init the worker
 			var worker	= new Worker("worker.js");
-			// example of message not from console4Worker
+			// bind the console4Worker to get console.* from worker
+			console4Worker.bind(worker);
+
+			// example of message handler
 			worker.addEventListener('message', function(event){
 
 				// filter this event if it is from console4Worker
